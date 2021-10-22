@@ -10,8 +10,7 @@ WORKDIR /backend
 
 COPY requirements.txt /backend/
 
-RUN apk add libffi-devel python-devel OpenSSL-devel
-RUN apk --update add libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc openssl-dev curl
+RUN apk --update add libxml2-dev libxslt-dev libffi-dev gcc musl-dev libgcc openssl-dev curl libffi-devel python-devel OpenSSL-devel
 RUN apk add jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
 RUN pip install Pillow
 RUN pip install -r requirements.txt
