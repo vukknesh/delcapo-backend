@@ -25,7 +25,7 @@ SECRET_KEY = 'c+j_gsx_awz$w3nngrcl)$o(7wewv%q6(o!_(r!vxe&h&lxiq9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
