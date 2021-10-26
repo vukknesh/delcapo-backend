@@ -46,6 +46,14 @@ INSTALLED_APPS = [
     'userprofile'
 ]
 
+REST_FRAMEWORK = {
+    # "DATE_INPUT_FORMATS": ['%d-%m-%Y'],
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 900
+}
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 
@@ -58,6 +66,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
