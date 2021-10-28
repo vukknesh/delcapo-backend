@@ -180,9 +180,9 @@ class Order(models.Model):
                     for sabor in pizza.sabores.all():
                         if sabor.tipo_de_pizza.tipo_pizza == 'TRADICIONAL':
                             valor += sabor.tipo_de_pizza.preco_media
-                        if sabor.tipo_de_pizza.tipo_de_pizza == 'ESPECIAL':
+                        if sabor.tipo_de_pizza.tipo_pizza == 'ESPECIAL':
                             valor += sabor.tipo_de_pizza.preco_media
-                        if sabor.tipo_de_pizza.tipo_de_pizza == 'DOCE':
+                        if sabor.tipo_de_pizza.tipo_pizza == 'DOCE':
                             valor += sabor.tipo_de_pizza.preco_media
 
                 if tamanho == 40:
