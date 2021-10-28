@@ -145,6 +145,7 @@ class Order(models.Model):
         max_length=20, choices=STATUS_CHOICES, blank=True, default="Aberto")
     payment_type = models.CharField(
         max_length=50, choices=PAYMENT_TYPES_CHOICES, default='DINHEIRO',)
+    observacao = models.CharField(max_length=255, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 

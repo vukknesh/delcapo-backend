@@ -163,7 +163,7 @@ class OrderListAllSerializer(ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'cliente', 'endereco', 'telefone', 'lista_pizza',
+        fields = ['id', 'cliente', 'endereco', 'telefone', 'lista_pizza', 'observacao',
                   'lista_bebida', 'payment_type', 'status', 'total']
 
 

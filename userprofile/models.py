@@ -20,7 +20,7 @@ class Profile(models.Model):
     cpf = models.CharField(max_length=14, null=True, blank=True)
 
     endereco = models.CharField(max_length=255, null=True, blank=True)
-    fone = models.CharField(max_length=9, null=True)
+    fone = models.CharField(max_length=15, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
