@@ -156,12 +156,15 @@ class Order(models.Model):
     def total(self):
         """ Returns the price of the order. """
 
+        preco = 0
         if self.bebidas:
             for bebida in self.bebidas.all():
-                pass
+                valor_bebidas = 0
+                valor_bebidas = bebida.quantidade * bebida.item.preco
+                preco += valor_bebidas
+
             pass
         if self.pizzas:
-            preco = 0
             for pizza in self.pizzas.all():
 
                 quantidade_sabores = pizza.sabores.count()
