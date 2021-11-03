@@ -13,7 +13,7 @@ from rest_framework.serializers import (
 
 from accounts.serializers import UserSerializer
 
-from .models import Category, Sabor, Banner, Order, Pizza, Open, Ingrediente, Bebida, PedidoBebidas
+from .models import Category, Sabor, Banner, Order, Pizza, Open, Ingrediente, Bebida, PedidoBebidas, Border
 
 
 class CategoryCreateUpdateSerializer(ModelSerializer):
@@ -172,6 +172,13 @@ class BannerListAllSerializer(ModelSerializer):
     class Meta:
         model = Banner
         fields = ['id', 'image']
+
+
+class BordasListSerializer(ModelSerializer):
+
+    class Meta:
+        model = Border
+        fields = ['id', 'nome']
 
 
 class OrderUpdateSerializer(ModelSerializer):

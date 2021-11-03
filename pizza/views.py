@@ -1,5 +1,5 @@
-from .serializers import SaborListSerializer, SaborCreateUpdateSerializer, CategoryCreateUpdateSerializer, CategoryListAllSerializer, BannerListAllSerializer, OrderListAllSerializer, OrderUpdateSerializer, TodasBebidaSerializer, OpenCreateUpdateSerializer
-from .models import Sabor, Category, Banner, Order, Open, Pizza, Bebida
+from .serializers import SaborListSerializer, SaborCreateUpdateSerializer, CategoryCreateUpdateSerializer, CategoryListAllSerializer, BannerListAllSerializer, OrderListAllSerializer, OrderUpdateSerializer, TodasBebidaSerializer, OpenCreateUpdateSerializer, BordasListSerializer
+from .models import Sabor, Category, Banner, Order, Open, Pizza, Bebida, Border
 from django.contrib.auth.models import User
 from datetime import datetime, timezone
 from rest_framework.serializers import (
@@ -26,11 +26,13 @@ def get_all_foods_and_categorys(request):
     sabores = Sabor.objects.all()
     categorys = Category.objects.all()
     banners = Banner.objects.all()
+    bordas = Border.objects.all()
 
     return Response({
         "banners": BannerListAllSerializer(banners, many=True).data,
         "categorys": CategoryListAllSerializer(categorys, many=True).data,
-        "sabores": SaborListSerializer(sabores, many=True).data
+        "sabores": SaborListSerializer(sabores, many=True).data,
+        "bordas": BordasListSerializer(sabores, many=True).data,
     })
 
 

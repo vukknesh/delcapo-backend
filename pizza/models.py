@@ -144,7 +144,7 @@ class Order(models.Model):
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, blank=True, default="Aberto")
     payment_type = models.CharField(
-        max_length=50, choices=PAYMENT_TYPES_CHOICES, default='DINHEIRO',)
+        max_length=50, choices=PAYMENT_TYPES_CHOICES, default='DINHEIRO')
     observacao = models.CharField(max_length=255, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
@@ -234,3 +234,31 @@ class Open(models.Model):
 
     def __str__(self):
         return f'{self.open}'
+
+
+class Cart(models.Model):
+    PAYMENT_TYPES_CHOICES = (
+        ('DINHEIRO', 'Dinheiro'),
+        ('DEBITO', 'Debito'),
+        ('CREDITO', 'Credito'),
+    )
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, null=True)
+    pizzas = models.ManyToManyField(
+        Pizza, blank=True, related_name='pizza')
+    bebidas = models.ManyToManyField(
+        PedidoBebidas, blank=True, related_name='pedidobebida')
+    payment_type = models.CharField(
+        max_length=50, choices=PAYMENT_TYPES_CHOICES, default='DINHEIRO')
+    total = models.DecimalField(max_digits=8, decimal_places=2, default=0.0)
+    timestamp = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+
+    class Meta:
+        ordering = ['timestamp']
+
+    def __str__(self):
+        if user:
+            return f'{self.user.first_name}'
+        else:
+            return f'{self.timestamp} - {self.total}'
