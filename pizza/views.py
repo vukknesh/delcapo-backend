@@ -32,7 +32,7 @@ def get_all_foods_and_categorys(request):
         "banners": BannerListAllSerializer(banners, many=True).data,
         "categorys": CategoryListAllSerializer(categorys, many=True).data,
         "sabores": SaborListSerializer(sabores, many=True).data,
-        "bordas": BordasListSerializer(sabores, many=True).data,
+        "bordas": BordasListSerializer(bordas, many=True).data,
     })
 
 
