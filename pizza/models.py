@@ -39,6 +39,8 @@ class Border(models.Model):
 
 class Bebida(models.Model):
 
+    image = models.ImageField(
+        upload_to='uploads/bebidas/', null=True, blank=True)
     nome = models.CharField(max_length=60)
     preco = models.DecimalField(max_digits=8, decimal_places=2, default=0.0)
 
