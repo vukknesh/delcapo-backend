@@ -164,14 +164,14 @@ def confirmar_pedido(request):
         observacao = request.data['observacao']
 
     print(f'observacao = {observacao}')
-    user = User.objects.get(id=2)
+    print(f'pre user')
+    # user = User.objects.get(id=2)
     # if request.data['user']:
     #     id = request.data['user']
     #     user = User.objects.get(id=id)
 
-    print(f'user {user}')
     order = Order.objects.create(
-        user=user, nome=nome, payment_type=payment_type, endereco=end, fone=fone, observacao=observacao)
+        nome=nome, payment_type=payment_type, endereco=end, fone=fone, observacao=observacao)
 
     print(f'order = {order}')
     order.pizzas.set(lista_pizza_id)
