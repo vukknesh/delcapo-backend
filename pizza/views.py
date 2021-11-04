@@ -115,15 +115,21 @@ def confirmar_pedido(request):
         print(f'pizzas = {pizzas}')
 
         for pizza in pizzas:
-            tamanho = pizza['tamanho']
-            borda = pizza['borda']
+            tamanho = int(pizza['tamanho'])
+            borda = int(pizza['borda'])
             sabores = pizza['sabores']
             print(f'tamanho {tamanho}')
-            print(f'borda {borda}')
+            print(f' type tamanho {type(tamanho)}')
+            print(f'type borda {type(borda)}')
+            print(f' type sabores {type(sabores)}')
             print(f'sabores {sabores}')
             p = Pizza.objects.create(
-                tamanho=tamanho, borda=borda, sabores=sabores, descricao='Pelo App')
-            print(f'p = {p}')
+                tamanho=tamanho, borda=borda, descricao='Pelo App')
+            print(f'p pre sabores = {p}')
+            for sab in sabores:
+                print(f'sab  in sabores= {sab}')
+                p.sabores.add(sab)
+            print(f'p depois = {p}')
             print(f'p.id = {p.id}')
             lista_pizza_id.append(p.id)
 
