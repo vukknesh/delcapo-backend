@@ -91,7 +91,9 @@ def valor_pedido(request):
             print(f'type quantidade {type(quantidade)}')
             preco_bebida = quantidade * preco
             print(f'preco_bebida {preco_bebida}')
-            total += preco_bebida
+            print(f'total {total}')
+            print(f'type total {type(total)}')
+            total = float(total) + preco_bebida
             print(f'total bebida final {total}')
 
     return Response({
