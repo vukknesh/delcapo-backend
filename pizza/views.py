@@ -38,6 +38,12 @@ def get_all_foods_and_categorys(request):
     })
 
 
+class OrderDetailAPIView(RetrieveAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    lookup_field = 'id'
+
+
 @api_view(['POST'])
 def valor_pedido(request):
     print(f'request.data valor_pedido {request.data}')

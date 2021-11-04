@@ -13,7 +13,8 @@ from .views import (
     OrderDeleteAPIView,
     confirmar_pedido,
     valor_pedido,
-    OpenUpdateAPIView
+    OpenUpdateAPIView,
+    OrderDetailAPIView
 )
 
 
@@ -32,6 +33,8 @@ urlpatterns = [
         OrderUpdateAPIView.as_view(), name='update'),
     url(r'^order/(?P<id>[\w-]+)/delete/$',
         OrderDeleteAPIView.as_view(), name='delete'),
+    url(r'^order/(?P<id>[\w-]+)/$',
+        OrderDetailAPIView.as_view(), name='order'),
     url(r'^open/$',
         OpenUpdateAPIView.as_view(), name='open'),
     url(r'^open/(?P<id>[\w-]+)/edit/$',
