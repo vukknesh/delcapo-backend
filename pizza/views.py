@@ -1,5 +1,5 @@
-from .serializers import SaborListSerializer, SaborCreateUpdateSerializer, CategoryCreateUpdateSerializer, CategoryListAllSerializer, BannerListAllSerializer, OrderListAllSerializer, OrderUpdateSerializer, TodasBebidaSerializer, OpenCreateUpdateSerializer, BordasListSerializer
-from .models import Sabor, Category, Banner, Order, Open, Pizza, Bebida, Border
+from .serializers import SaborListSerializer, SaborCreateUpdateSerializer, CategoryCreateUpdateSerializer, CategoryListAllSerializer, BannerListAllSerializer, OrderListAllSerializer, OrderUpdateSerializer, TodasBebidaSerializer, OpenCreateUpdateSerializer, BordasListSerializer, OrderSerializer
+from .models import Sabor, Category, Banner, Order, Open, Pizza, Bebida, Border, PedidoBebidas
 from django.contrib.auth.models import User
 from datetime import datetime, timezone
 from rest_framework.serializers import (
@@ -106,31 +106,56 @@ def valor_pedido(request):
 @api_view(['POST'])
 def confirmar_pedido(request):
     print(f'request.data {request.data}')
+    number = 1
+    lista_pizza_id = []
+    lista_bebidas_id = []
+    if request.data['user']:
+        user = request.data['user']
 
-    #     {
-    # 	"userid": 2,
-    # 	"itemorder":[{"quantity": 1, "food": 1}, {"quantity": 20, "food": 3}],
-    # 	"payment_type": "CREDITO",
-    # 	"observation": "gostaria de borda de catupiNi"
-    # }
+    if request.data['pizzas']:
+        pizzas = request.data['pizzas']
+        print(f'pizzas = {pizzas}')
 
-    # itemorder = None
-    # if request.data['itemorder']:
-    #     order = Order.objects.create(
-    #         user=user, payment_type=payment_type, observation=observation)
-    #     itemorder = request.data['itemorder']
-    #     for item in itemorder:
-    #         quantity = item['quantity']
-    #         f = Food.objects.get(id=item['food'])
-    #         ItemOrder.objects.create(
-    #             order=order, food=f, quantity=quantity)
+        for pizza in pizzas:
+            tamanho = pizza['tamanho']
+            borda = pizza['borda']
+            sabores = pizza['sabores']
+            p = Pizza.objects.create(
+                tamanho=tamanho, borda=borda, sabores=sabores)
+            lista_pizza_id.append(p.id)
 
-    # if itemorder is None:
-    #     raise ValidationError("Nenhum item no carrinho")
+    if request.data['bebidas']:
+        bebidas = request.data['bebidas']
+        print(f'bebidas = {bebidas}')
+        for bebida in bebidas:
+            item = bebida['bebida']
+            print(f'item em bebida = {item}')
+            quantidade = bebida['quantidade']
+            b = PedidoBebidas.objects.create(item=item, quantidade=quantidade)
+            lista_bebidas_id.append(b.id)
 
+    print(f'lista_bebidas_id = {lista_bebidas_id}')
+    print(f'lista_pizza_id = {lista_pizza_id}')
+
+    if request.data['payment_type']:
+        payment_type = request.data['payment_type']
+
+    if request.data['end']:
+        end = request.data['end']
+    if request.data['nome']:
+        nome = request.data['nome']
+    if request.data['fone']:
+        fone = request.data['fone']
+    if request.data['observacao']:
+        observacao = request.data['observacao']
+
+    order = Order.objects.create(user=user, bebidas=lista_bebidas_id, pizzas=lista_pizza_id,
+                                 payment_type=payment_type, nome=nome, end=end, fone=fone, observacao=observacao)
+
+    print(f'order = {order}')
     return Response({
-        "message": 'Pedido criado com sucesso!'
-        # "order": OrderListAllSerializer(order).data
+        "message": 'Pedido criado com sucesso!',
+        "number": OrderSerializer(order)
     })
 
 

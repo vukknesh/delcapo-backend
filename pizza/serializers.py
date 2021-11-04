@@ -66,6 +66,13 @@ class BebidaSerializer(ModelSerializer):
         fields = ['item', 'quantidade']
 
 
+class OrderSerializer(ModelSerializer):
+
+    class Meta:
+        model = Order
+        fields = ('__all__')
+
+
 class TodasBebidaSerializer(ModelSerializer):
 
     class Meta:
@@ -163,7 +170,7 @@ class OrderListAllSerializer(ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'cliente', 'endereco', 'telefone', 'lista_pizza', 'observacao',
+        fields = ['id', 'cliente', 'nome', 'fone', 'end', 'endereco', 'telefone', 'lista_pizza', 'observacao',
                   'lista_bebida', 'payment_type', 'status', 'total']
 
 
