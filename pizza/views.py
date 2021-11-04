@@ -124,12 +124,10 @@ def confirmar_pedido(request):
             print(f' type sabores {type(sabores)}')
             print(f'sabores {sabores}')
             descricao = f'Pelo tamanho {tamanho}'
-            p = Pizza.objects.create(sabores=sabores,
-                                     tamanho=tamanho, borda=borda, descricao=descricao)
-            print(f'p pre sabores = {p}')
-            # for sab in sabores:
-            #     print(f'sab  in sabores= {sab}')
-            #     p.sabores.add(sab)
+            borda_pizza = Border.objcets.get(id=borda)
+            p = Pizza.objects.create(
+                tamanho=tamanho, borda=borda_pizza, descricao=descricao)
+            p.sabores.set(sabores)
             print(f'p depois = {p}')
             print(f'p.id = {p.id}')
             lista_pizza_id.append(p.id)
@@ -139,9 +137,11 @@ def confirmar_pedido(request):
         print(f'bebidas = {bebidas}')
         for bebida in bebidas:
             item = bebida['bebida']
+            bebida_item = Bebida.objects.get(id=item)
             print(f'item em bebida = {item}')
             quantidade = bebida['quantidade']
-            b = PedidoBebidas.objects.create(item=item, quantidade=quantidade)
+            b = PedidoBebidas.objects.create(
+                item=bebida_item, quantidade=quantidade)
             lista_bebidas_id.append(b.id)
 
     print(f'lista_bebidas_id = {lista_bebidas_id}')
