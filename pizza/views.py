@@ -47,6 +47,8 @@ def valor_pedido(request):
     if request.data['pizzas']:
         pizzas = request.data['pizzas']
         for pizza in pizzas:
+            print(f'pizza ---  {pizza}')
+            print(f'pizza ---  {type(pizza.tamanho)}')
             tamanho = pizza.tamanho
             print(f'tamanha ---  {tamanho}')
             dividido = pizza.sabores.length
