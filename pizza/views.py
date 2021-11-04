@@ -50,7 +50,7 @@ def valor_pedido(request):
             print(f'pizza ---  {pizza}')
             tamanho = pizza['tamanho']
             print(f'tamanha ---  {tamanho}')
-            dividido = pizza['sabores'].length
+            dividido = len(pizza['sabores'])
             print(f'dividido ---  {dividido}')
 
             borda = Border.objects.find(id=pizza['borda'])
