@@ -52,11 +52,16 @@ def valor_pedido(request):
             print(f'tamanha ---  {tamanho}')
             dividido = len(pizza['sabores'])
             print(f'dividido ---  {dividido}')
+            id_borda = pizza['borda']
+            print(f'id_borda ---  {id_borda}')
 
-            borda = Border.objects.find(id=pizza['borda'])
-            print(f'borda ---  {borda}')
-            preco_borda = borda.preco
-            print(f'preco_borda ---  {preco_borda}')
+            borda = Border.objects.get(id=id_borda)
+            preco_borda = 0
+            if borda:
+
+                print(f'borda ---  {borda}')
+                preco_borda = borda.preco
+                print(f'preco_borda ---  {preco_borda}')
             valor_pizza = 0
             for sabor in pizza.sabores:
                 s = Sabor.objects.get(id=sabor)
