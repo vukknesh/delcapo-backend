@@ -171,7 +171,7 @@ def confirmar_pedido(request):
         user = User.objects.first()
 
     order = Order.objects.create(
-        user=user, payment_type=payment_type, nome=nome, endereco="Av sao sebastiao", fone="996404599", observacao=observacao)
+        user=user, nome=nome, endereco=end, fone=fone, observacao=observacao)
 
     print(f'order = {order}')
     order.pizzas.set(lista_pizza_id)
