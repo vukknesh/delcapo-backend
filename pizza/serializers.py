@@ -151,7 +151,6 @@ class CategoryListAllSerializer(ModelSerializer):
 
 class OrderListAllSerializer(ModelSerializer):
     cliente = ReadOnlyField(source='user.first_name')
-    endereco = ReadOnlyField(source='user.profile.endereco')
     telefone = ReadOnlyField(source='user.profile.fone')
     lista_pizza = SerializerMethodField()
     lista_bebida = SerializerMethodField()
@@ -170,7 +169,7 @@ class OrderListAllSerializer(ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ['id', 'cliente', 'nome', 'fone', 'end', 'endereco', 'telefone', 'lista_pizza', 'observacao',
+        fields = ['id', 'cliente', 'nome', 'fone', 'endereco',  'telefone', 'lista_pizza', 'observacao',
                   'lista_bebida', 'payment_type', 'status', 'total']
 
 
