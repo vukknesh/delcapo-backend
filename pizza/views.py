@@ -63,8 +63,10 @@ def valor_pedido(request):
                 preco_borda = borda.preco
                 print(f'preco_borda ---  {preco_borda}')
             valor_pizza = 0
-            for sabor in pizza.sabores:
+            for sabor in pizza['sabores']:
+                print(f'sabor = {sabor}')
                 s = Sabor.objects.get(id=sabor)
+                print(f's = {s}')
                 if tamanho == 25:
                     valor_pizza += s.tipo_de_pizza.preco_broto
                 if tamanho == 35:
