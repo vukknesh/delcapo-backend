@@ -50,10 +50,11 @@ def valor_pedido(request):
             print(f'pizza ---  {pizza}')
             tamanho = pizza['tamanho']
             print(f'tamanha ---  {tamanho}')
-            dividido = pizza.sabores.length
+            dividido = pizza['sabores'].length
             print(f'dividido ---  {dividido}')
 
-            borda = Border.objects.find(id=pizza.borda)
+            borda = Border.objects.find(id=pizza['borda'])
+            print(f'borda ---  {borda}')
             preco_borda = borda.preco
             print(f'preco_borda ---  {preco_borda}')
             valor_pizza = 0
@@ -73,7 +74,7 @@ def valor_pedido(request):
         bebidas = request.data['bebidas']
         for bebida in bebidas:
             print(f'bebida {bebida}')
-            total += bebida.quantidade * bebida.preco
+            total += bebida['quantidade'] * bebida['preco']
 
     return Response({
 
