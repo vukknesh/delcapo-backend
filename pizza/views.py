@@ -150,12 +150,16 @@ def confirmar_pedido(request):
     if request.data['payment_type']:
         payment_type = request.data['payment_type']
 
+    print(f'payment_type = {payment_type}')
     if request.data['end']:
         end = request.data['end']
+    print(f'end = {end}')
     if request.data['nome']:
         nome = request.data['nome']
+    print(f'nome = {nome}')
     if request.data['fone']:
-        fone = int(request.data['fone'])
+        fone = request.data['fone']
+    print(f'fone = {fone}')
     if request.data['observacao']:
         observacao = request.data['observacao']
 
