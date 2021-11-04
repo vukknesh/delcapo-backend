@@ -21,7 +21,7 @@ from rest_framework import generics
 from rest_framework import mixins
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def get_all_foods_and_categorys(request):
     sabores = Sabor.objects.all()
     categorys = Category.objects.all()
@@ -90,7 +90,9 @@ def valor_pedido(request):
             print(f'type preco {type(preco)}')
             print(f'type quantidade {type(quantidade)}')
             preco_bebida = quantidade * preco
+            print(f'preco_bebida {preco_bebida}')
             total += preco_bebida
+            print(f'total bebida final {total}')
 
     return Response({
 
