@@ -164,11 +164,10 @@ def confirmar_pedido(request):
         observacao = request.data['observacao']
 
     print(f'observacao = {observacao}')
-    user = None
     user = User.objects.get(id=2)
-    if request.data['user']:
-        id = request.data['user']
-        user = User.objects.get(id=id)
+    # if request.data['user']:
+    #     id = request.data['user']
+    #     user = User.objects.get(id=id)
 
     print(f'user {user}')
     order = Order.objects.create(
