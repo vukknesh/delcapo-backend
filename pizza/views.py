@@ -159,13 +159,19 @@ def confirmar_pedido(request):
     if request.data['observacao']:
         observacao = request.data['observacao']
 
+    print(f'observacao = {observacao}')
     if request.data['user']:
-        user = request.data['user']
+        id = request.data['user']
+        user = User.objects.get(id=id)
     else:
         user = User.objects.first()
 
-    order = Order.objects.create(user=user, bebidas=lista_bebidas_id, pizzas=lista_pizza_id,
-                                 payment_type=payment_type, nome=nome, end=end, fone=fone, observacao=observacao)
+    order = Order.objects.create(
+        user=user, payment_type=payment_type, nome=nome, end=end, fone=fone, observacao=observacao)
+
+    print(f'order = {order}')
+    order.pizzas.set(lista_pizza_id)
+    order.bebidas.set(lista_bebidas_id)
 
     print(f'order = {order}')
     return Response({
