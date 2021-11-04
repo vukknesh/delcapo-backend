@@ -43,19 +43,39 @@ def valor_pedido(request):
     print(f'request.data valor_pedido {request.data}')
     bebidas = None
     pizzas = None
+    total = 0
     if request.data['pizzas']:
         pizzas = request.data['pizzas']
+        for pizza in pizzas:
+            tamanho = pizza.tamanho
+            print(f'tamanha ---  {tamanho}')
+            dividido = pizza.sabores.length
+            print(f'dividido ---  {dividido}')
+
+            borda = Border.objects.find(id=pizza.borda)
+            preco_borda = borda.preco
+            print(f'preco_borda ---  {preco_borda}')
+            valor_pizza = 0
+            for sabor in pizza.sabores:
+                s = Sabor.objects.get(id=sabor)
+                if tamanho == 25:
+                    valor_pizza += s.tipo_de_pizza.preco_broto
+                if tamanho == 35:
+                    valor_pizza += s.tipo_de_pizza.preco_media
+                if tamanho == 40:
+                    valor_pizza += s.tipo_de_pizza.preco_grande
+            valor_pizza = valor_pizza/dividido
+            print(f'valor_pizza ---  {valor_pizza}')
+            total += valor_pizza
+
     if request.data['bebidas']:
         bebidas = request.data['bebidas']
-    total = 0
-    for bebida in bebidas:
-        print(f'bebida {bebida}')
-    for pizza in pizzas:
-        print(f'pizza {pizza}')
+        for bebida in bebidas:
+            print(f'bebida {bebida}')
+            total += bebida.quantidade * bebida.preco
 
     return Response({
-        "bebidas": BebidasListAPIView(bebidas, many=True).data,
-        "pizzas": PizzaListAPIView(pizzas, many=True).data,
+
         "total": total
     })
 
