@@ -77,6 +77,8 @@ def valor_pedido(request):
             print(f'valor_pizza ---  {valor_pizza}')
             total += valor_pizza
 
+    print(f'valor_parcial {total}')
+
     if request.data['bebidas']:
         bebidas = request.data['bebidas']
         for bebida in bebidas:
@@ -85,6 +87,8 @@ def valor_pedido(request):
             preco = bebida['preco']
             print(f'quantidade {quantidade}')
             print(f'preco {preco}')
+            print(f'type preco {type(preco)}')
+            print(f'type quantidade {type(quantidade)}')
             total += quantidade * preco
 
     return Response({
