@@ -39,21 +39,38 @@ def get_all_foods_and_categorys(request):
 
 
 @api_view(['POST'])
-def add_cart(request):
+def valor_pedido(request):
+    print(f'request.data valor_pedido {request.data}')
+    bebidas = None
+    pizzas = None
+    if request.data['pizzas']:
+        pizzas = request.data['pizzas']
+    if request.data['bebidas']:
+        bebidas = request.data['bebidas']
+    total = 0
+    for bebida in bebidas:
+        print(f'bebida {bebida}')
+    for pizza in pizzas:
+        print(f'pizza {pizza}')
+
+    return Response({
+        "bebidas": BebidasListAPIView(bebidas, many=True).data,
+        "pizzas": PizzaListAPIView(pizzas, many=True).data,
+        "total": total
+    })
+
+
+@api_view(['POST'])
+def confirmar_pedido(request):
+    print(f'request.data {request.data}')
+
     #     {
     # 	"userid": 2,
     # 	"itemorder":[{"quantity": 1, "food": 1}, {"quantity": 20, "food": 3}],
     # 	"payment_type": "CREDITO",
     # 	"observation": "gostaria de borda de catupiNi"
     # }
-    userid = None
-    payment_type = request.data['payment_type']
-    observation = None
-    if request.data['observation']:
-        observation = request.data['observation']
-    if request.data['userid']:
-        userid = request.data['userid']
-        user = User.objects.get(id=userid)
+
     # itemorder = None
     # if request.data['itemorder']:
     #     order = Order.objects.create(
@@ -69,8 +86,8 @@ def add_cart(request):
     #     raise ValidationError("Nenhum item no carrinho")
 
     return Response({
-        "message": 'Pedido criado com sucesso!',
-        "order": OrderListAllSerializer(order).data
+        "message": 'Pedido criado com sucesso!'
+        # "order": OrderListAllSerializer(order).data
     })
 
 

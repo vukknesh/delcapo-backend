@@ -11,7 +11,8 @@ from .views import (
     BebidasListAPIView,
     OrderUpdateAPIView,
     OrderDeleteAPIView,
-    add_cart,
+    confirmar_pedido,
+    valor_pedido,
     OpenUpdateAPIView
 )
 
@@ -21,7 +22,8 @@ urlpatterns = [
     url(r'^$', PizzaListAPIView.as_view(), name='list'),
 
     url(r'^todas/$', get_all_foods_and_categorys, name='todas'),
-    url(r'^add-cart/$', add_cart, name='add-cart'),
+    url(r'^confirmar-pedido/$', confirmar_pedido, name='confirmar-pedido'),
+    url(r'^valor-pedido/$', valor_pedido, name='valor-pedido'),
     url(r'^all-orders/$', OrderListAPIView.as_view(), name='orders'),
     url(r'^bebidas/$', BebidasListAPIView.as_view(), name='bebidas'),
     url(r'^sabores/$', SaboresListAPIView.as_view(), name='sabores'),
