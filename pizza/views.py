@@ -124,7 +124,7 @@ def confirmar_pedido(request):
             print(f' type sabores {type(sabores)}')
             print(f'sabores {sabores}')
             descricao = f'Pelo tamanho {tamanho}'
-            borda_pizza = Border.objcets.get(id=borda)
+            borda_pizza = Border.objects.get(id=borda)
             p = Pizza.objects.create(
                 tamanho=tamanho, borda=borda_pizza, descricao=descricao)
             p.sabores.set(sabores)
