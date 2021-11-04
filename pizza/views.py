@@ -81,7 +81,11 @@ def valor_pedido(request):
         bebidas = request.data['bebidas']
         for bebida in bebidas:
             print(f'bebida {bebida}')
-            total += bebida['quantidade'] * bebida['preco']
+            quantidade = bebida['quantidade']
+            preco = bebida['preco']
+            print(f'quantidade {quantidade}')
+            print(f'preco {preco}')
+            total += quantidade * preco
 
     return Response({
 
