@@ -84,7 +84,7 @@ def valor_pedido(request):
         for bebida in bebidas:
             print(f'bebida {bebida}')
             quantidade = bebida['quantidade']
-            preco = bebida['preco']
+            preco = float(bebida['preco'])
             print(f'quantidade {quantidade}')
             print(f'preco {preco}')
             print(f'type preco {type(preco)}')
