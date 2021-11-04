@@ -180,7 +180,8 @@ def confirmar_pedido(request):
     print(f'order = {order}')
     return Response({
         "message": 'Pedido criado com sucesso!',
-        "number": OrderSerializer(order)
+        "order": OrderSerializer(order).data,
+        "number": order.id
     })
 
 
