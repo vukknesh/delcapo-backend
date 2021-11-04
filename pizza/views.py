@@ -164,6 +164,7 @@ def confirmar_pedido(request):
         observacao = request.data['observacao']
 
     print(f'observacao = {observacao}')
+    user = None
     if request.data['user']:
         id = request.data['user']
         user = User.objects.get(id=id)
