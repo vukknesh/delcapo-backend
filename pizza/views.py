@@ -109,8 +109,6 @@ def confirmar_pedido(request):
     number = 1
     lista_pizza_id = []
     lista_bebidas_id = []
-    if request.data['user']:
-        user = request.data['user']
 
     if request.data['pizzas']:
         pizzas = request.data['pizzas']
@@ -148,6 +146,11 @@ def confirmar_pedido(request):
         fone = request.data['fone']
     if request.data['observacao']:
         observacao = request.data['observacao']
+
+    if request.data['user']:
+        user = request.data['user']
+    else:
+        user = User.objects.first()
 
     order = Order.objects.create(user=user, bebidas=lista_bebidas_id, pizzas=lista_pizza_id,
                                  payment_type=payment_type, nome=nome, end=end, fone=fone, observacao=observacao)
