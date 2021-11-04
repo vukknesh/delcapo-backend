@@ -76,6 +76,7 @@ def valor_pedido(request):
             valor_pizza = valor_pizza/dividido
             print(f'valor_pizza ---  {valor_pizza}')
             total += valor_pizza
+            total += preco_borda
 
     print(f'valor_parcial {total}')
 
