@@ -115,6 +115,7 @@ def confirmar_pedido(request):
     number = 1
     lista_pizza_id = []
     lista_bebidas_id = []
+    observacao = "Sem obs"
 
     if request.data['pizzas']:
         pizzas = request.data['pizzas']
